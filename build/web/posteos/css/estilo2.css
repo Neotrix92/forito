@@ -1,0 +1,31 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+body{
+    background-color: chocolate;
+}
+
+
+.posteo_item{
+    background-color: brown;
+    color: snow;
+    font-size: large;
+}
+
+td {
+    background-color: salmon;
+    padding: 2px;
+}
+
+.posteo_titulo{
+    width: 250px;
+}
+
+.posteo_autor{
+    width: 200px;
+}
+
+.boton{
+    width: 80px;
+}

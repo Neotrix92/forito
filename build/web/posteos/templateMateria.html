@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contacto</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/1.css" id="elestilo" />
+        <link rel="stylesheet" href="css/retoques.css" />
+    </head>
+    <body>
+        <!-- Modal Agregar -->
+            <div id="agregarModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <form action="" method="GET">
+                        <h1>Autor</h1>
+                        <input type="text" name="posteo_autor" id="posteo_autor" maxlength="30" required/>
+                        <h1>Titulo</h1>
+                        <input type="text" name="posteo_titulo" id="posteo_titulo" maxlength="40" required/><br><br>
+                        <input class='boton' type="button" id="btnInsertar" value="Insertar" />
+                    </form>
+                </div>
+            </div>
+        
+        <div class="p-pageWrapper">
+            <header>
+                <nav class="p-nav">
+                    <div class="izquierda" >
+                        <img src="../logo.jpg" alt=""/>
+                    </div><div class="derecha">
+                        <div class="LR">
+                            <span class="p-nav-title">Bienvenido al Foro del IFTS16</span>
+                        </div>
+                        <div class="RR">
+                            <a href="#">
+                                Ingresar
+                            </a>
+                            <a href="#">
+                                Registrate
+                            </a>
+                            <a href="#">
+                                Contacto
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            
+        <div class="p-body-inner">
+            <h1 class="p-title-value">Foros IFTS16</h1><br>
+                <div style="margin-bottom: 5px">
+                    <img src="../agregar.jpg" alt="" style="width: 26px; margin-bottom: -8px" />
+                    <input id="agregarTema" type="button" style="font-size: 14px;" value="Agregar tema">
+                </div>
+                <div class="block-container">
+                    <h2 class="block-header">
+                        <span>Titulo Materia</span>
+                    </h2>
+                    <section id="panelResultados">
+                        
+                    </section>
+<script type="text/template" id="templatePosteos">                    
+`
+    ${ posteos.map( posteo => 
+    `
+                    <div class="node node--unread">
+                        <div class="node-body">
+                            <div class="node-main">
+                                <h3 class="node-title">
+                                    <a href="templatePosteo.html" class="posteo_titulo" id='posteo_titulo_${posteo.id}'>${posteo.titulo}</a>   
+                                </h3>	
+                            </div>
+                            <div class="node-stats">
+                                <div style="width:65%">
+                                    <dl class="pairs pairs--rows">
+                                        <dt>Autor</dt>
+                                        <dd class="posteo_autor" id='posteo_autor_${posteo.id}'>${posteo.autor}</dd>
+                                    </dl>
+                                </div>
+                                <div style="width:85%">
+                                    
+                                    <img onClick='mostrarEdit(${posteo.id})' id="editarTema${posteo.id}" class="imgEliminar" src="../editar.jpg" style="width: 30px;">
+                                    <img class="imgEliminar" src="../eliminar.jpg" onClick='Posteo.eliminar(${posteo.id});'>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="editarModal${posteo.id}" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="closeEditar${posteo.id}">&times;</span>
+                            <form action="" method="GET">
+                                <h1>Autor</h1>
+                                <input type="text" name="edit_autor_${posteo.id}" id="edit_autor_${posteo.id}" maxlength="30" value="${posteo.autor}" required/>
+                                <h1>Titulo</h1>
+                                <input type="text" name="edit_titulo_${posteo.id}" id="edit_titulo_${posteo.id}" maxlength="40" value="${posteo.titulo}" required/><br><br>
+                                <input class='boton' type="button" id="btnEditar" value="Modificar" onClick='Posteo.actualizar(${posteo.id});'/>
+                            </form>
+                        </div>
+                    </div>
+`
+        ).join('')
+      }
+` 
+</script>                    
+                </div>
+            </div>
+        </div>
+       
+        
+        <footer class="p-footer" id="footer">
+            <div class="p-footer-inner">
+                <div class="p-footer-row">
+                    <div class="p-footer-row-opposite">
+                        <ul class="p-footer-linkList">
+                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">Reglamento</a></li>
+                            <li><a href="#">Ayuda</a></li>
+                            <li><a href="../index.html" rel="nofollow">Inicio</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="js/posteos.js"></script>
+        <script type="text/javascript">
+            Posteo.consultar();
+        </script>  
+        <script src="js/modalAgregar.js" type="text/javascript"></script>
+        <script src="js/modalEditar.js" type="text/javascript"></script>
+    </body>
+</html>

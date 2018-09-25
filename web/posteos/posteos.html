@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contacto</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/estilo2.css" rel="stylesheet" id="elestilo"/>
+    </head>
+    <body>
+        <div>.:: Posteos ::.</div>
+        <section id="panelFiltro">
+            <form action="" method="GET">
+                <input type="text" name="posteo_autor" id="posteo_autor" maxlength="30" required/>
+                <input type="text" name="posteo_titulo" id="posteo_titulo" maxlength="40" required/>
+                <input class='boton' type="button" id="btnInsertar" value="Insertar" />
+                <input class='boton' type="button" id="btnConsultar" value="Consultar" />
+            </form>
+        </section>
+        <section id="panelResultados">
+
+        </section>
+
+        <script type="text/template" id="templatePosteos">
+`
+    <table>
+            <tr><th>ID</th><th>Autor</th><th>Titulo</th></tr>
+    ${ posteos.map( posteo => 
+    `
+              <tr class='posteo_item'>
+                  <td>${posteo.id}</td>
+                  <td><input class='posteo_autor' type='text' value='${posteo.autor}' id='posteo_autor_${posteo.id}' /></td>
+                  <td><input class='posteo_titulo' type='text' value='${posteo.titulo}' id='posteo_titulo_${posteo.id}' /></td>
+                  <td><input class='boton' type='button' value='Modificar' onclick='Posteo.actualizar(${posteo.id});' /></td>
+                  <td><input class='boton' type='button' value='Eliminar' onclick='Posteo.eliminar(${posteo.id});' /></td>
+              </tr>
+    `
+        ).join('')
+      }
+    </table>
+`            
+        </script>
+        <script src="js/posteos.js"></script>
+    </body>
+</html>
